@@ -2,10 +2,10 @@
 
 Play **side-by-side (SBS) 3D videos glasses-free** on the **Samsung Odyssey 3D (G90XF)** under Linux.
 
-This is an unofficial player, built by me (with the help of Claude Code). It drives the monitor's lenticular 3D lens, tracks your
+This is an unofficial player, built by me (with plenty of help from Claude Code, so proceed with some caution). It drives the monitor's lenticular 3D lens, tracks your
 eyes with the built-in webcam, and "weaves" the left/right halves of an SBS video to each eye in real
 time (zero-copy libmpv → GPU, locked to the panel refresh, up to 4K @ 120 Hz). Samsung ships no Linux
-software for this display — this fills that gap for people who own one.
+software for this display, this fills that gap for people who own one.
 
 > ⚠️ **Unofficial & not affiliated with Samsung. Use at your own risk.** It controls your monitor's
 > hardware over a reverse-engineered interface. Please read [`DISCLAIMER.md`](DISCLAIMER.md).
