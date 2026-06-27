@@ -1,0 +1,12 @@
+# Linux 3D SBS Player — Python runtime deps.
+#   pip install -r requirements.txt
+# System packages (libmpv, ffmpeg, libglfw3, NVIDIA driver, ...) are installed by setup_linux.sh.
+numpy<2                 # arrays + SBS split (mediapipe pins numpy<2)
+opencv-python>=4.9      # camera capture, image IO, OpenCV FileStorage (.yml calib)
+moderngl>=5.10          # GLSL lenticular weave + HUD
+glfw>=2.7               # OpenGL context / windowing  (also needs system libglfw3)
+python-mpv>=1.0         # zero-copy libmpv video decode into the weave (needs system libmpv + ffmpeg)
+mediapipe>=0.10         # FaceLandmarker head/eye tracking
+pyserial>=3.5           # lens (FPC) serial control on /dev/ttyACM0
+python-xlib>=0.33       # X11 global hotkeys + window helpers
+Pillow>=10              # HUD bitmap-font atlas (needs system fonts-dejavu-core)

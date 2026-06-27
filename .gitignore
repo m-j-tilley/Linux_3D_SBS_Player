@@ -1,0 +1,31 @@
+# --- Standard G90XF calibration (SHIPPED in-repo; the same for every Odyssey 3D unit) ---
+# The lenticular weave field (hub/_fields.pkl), correction textures (calib/3DStackCorrection_A/B.png),
+# and the tracker/eye calibration are committed so the player gives clean glasses-free 3D out of the
+# box -- no per-monitor capture. See CALIBRATION.md. Still ignored: the encrypted Samsung 3dstack blob
+# (never read at runtime) and dev .npy intermediates.
+calib/3dstack.eini
+hub/_*.npy
+
+# --- Large model weights (fetched by setup_linux.sh) ---
+models/*.task
+models/*.onnx
+models/*.tflite
+
+# --- Python / build / editor cruft ---
+__pycache__/
+*.py[cod]
+*.bak
+.venv/
+venv/
+.idea/
+.vscode/
+
+# --- Runtime / scratch ---
+*.log
+/tmp/
+
+# --- Media (don't commit big test videos) ---
+*.mp4
+*.mkv
+*.webm
+*.mov

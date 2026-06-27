@@ -1,0 +1,9 @@
+{
+  "period": 5.425,
+  "slant": 0.865,
+  "center": -16.5,
+  "corr_amp": 1.0,
+  "filter_slope": 10.0,
+  "eye_gain": 0.0,
+  "swap": 0
+}

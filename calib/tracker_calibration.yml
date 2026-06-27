@@ -1,0 +1,7 @@
+%YAML:1.0
+---
+imageWidth: 640
+imageHeight: 480
+cameraIdentifier1: "vid_4e80&pid_20d7|vid_04e8&pid_20d7|vid_04e8&pid_20d8|&mi_00_1L"
+cameraIdentifier2: "vid_4e80&pid_20d7|vid_04e8&pid_20d7|vid_04e8&pid_20d8|&mi_00_1R"
+singleCamera:false

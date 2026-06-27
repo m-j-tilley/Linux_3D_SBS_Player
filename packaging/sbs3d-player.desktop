@@ -1,0 +1,13 @@
+# Right-click "Open With > 3D SBS Player" handler. setup_linux.sh installs this for you (substitutes
+# __REPO__, copies it to ~/.local/share/applications, runs update-desktop-database).
+# By hand: sed "s#__REPO__#$(pwd)#g" packaging/sbs3d-player.desktop > ~/.local/share/applications/sbs3d-player.desktop
+# %u (not %f): play3d_app.sh URL-decodes file:// URIs, so this also works for files on mounted volumes.
+[Desktop Entry]
+Type=Application
+Name=3D SBS Player
+Comment=Play side-by-side 3D video glasses-free on the Samsung Odyssey 3D
+Exec=__REPO__/hub/play3d_app.sh %u
+Icon=__REPO__/hub/sbs3d-player-icon.png
+Terminal=false
+MimeType=video/mp4;video/x-matroska;video/webm;video/quicktime;
+Categories=AudioVideo;Player;
