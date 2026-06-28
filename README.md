@@ -112,6 +112,11 @@ sweet-spot offset in `calib/eye_offset.json`. See **[`CALIBRATION.md`](CALIBRATI
 find your eyes via the webcam; `lens.py` turns the physical 3D lens on over USB serial. Calibration
 lives in `calib/`. There are **no external network calls** at runtime.
 
+## Acknowledgments
+
+- Head tracking uses Google's [MediaPipe](https://github.com/google-ai-edge/mediapipe) FaceLandmarker, licensed under [Apache-2.0](https://www.apache.org/licenses/LICENSE-2.0).
+- Thanks to people over at [r/Odyssey3D](https://www.reddit.com/r/Odyssey3D/) for getting me into this glasses-free 3D-monitor stuff.
+
 ## License
 
 [MIT](LICENSE). See [`DISCLAIMER.md`](DISCLAIMER.md) for the interoperability / no-warranty notice.
