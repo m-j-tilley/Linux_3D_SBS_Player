@@ -28,12 +28,21 @@ not to ship it, delete the `authenticate()` / `_compute_auth_response()` methods
 constant from `hub/lens.py` — the rest of the player still runs (you would then enable the lens by
 other means).
 
-## No included copyrighted vendor assets
+## What calibration this ships
 
-This repository ships **only** independently-written code plus **nominal, generic** calibration. It does
-**not** include the monitor's proprietary per-unit calibration (weave correction textures, the captured
-weave field, factory stereo calibration), any vendor binaries, firmware, or models. Those stay on your
-own machine; see [`CALIBRATION.md`](CALIBRATION.md).
+So the player works on a fresh install, this repo ships the **numeric calibration the G90XF needs**: the
+captured weave field (`hub/_fields.pkl`), the stack-correction textures (`calib/3DStackCorrection_*.png`),
+and the camera/stereo calibration (`calib/intrinsics.yml`, `extrinsics.yml`, `Tracker2DisplayTransform.ini`,
+`calib/baseline_scale.json`, `calib/eye_offset.json`). The weave field + corrections were **captured for
+interoperability** from the panel's weave pipeline; the stereo set is a one-off calibration of the Samsung
+3D webcam. They ship as the standard set because the G90XF is the same across units, so no per-monitor
+capture is needed.
+
+This is **calibration data, not code** — no vendor binaries, firmware, source, models, logos, or trademarks
+are included. Replicating captured calibration data may carry legal considerations depending on your
+jurisdiction; **you are responsible for lawful use where you live**, and I will remove anything a
+rights-holder asks me to. To ship/run nothing captured, set **`SBS3D_NOMINAL=1`** for the synthetic weave
+(derived from panel geometry alone — lower quality, but captured-free).
 
 ## Safety
 

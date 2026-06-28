@@ -76,16 +76,16 @@ update-desktop-database ~/.local/share/applications 2>/dev/null || true
 
 Now right-click any SBS video → **Open With → 3D SBS Player**.
 
-## Calibration (optional)
+## Calibration
 
-The player ships with the **standard Samsung Odyssey 3D (G90XF) panel constants**. These are panel-design
-geometry (pixel pitch, lenslet pitch/slant) and are **the same for every G90XF unit**, so it should give
-clean glasses-free 3D **out of the box — no per-monitor capture required**. (If you do see a doubled image,
-that's almost always the panel's 3D mode not engaging — see Troubleshooting, not a calibration issue.)
+The player ships the **standard Samsung Odyssey 3D (G90XF) calibration** — the captured weave field, the
+stack-correction textures, and the camera/stereo calibration (see **[`DISCLAIMER.md`](DISCLAIMER.md)** for
+exactly what that includes and why). The G90XF is the same across units, so this gives clean glasses-free
+3D **out of the box — no per-monitor capture required**. (A doubled image is almost always the panel's 3D
+mode not engaging — see Troubleshooting, not a calibration issue.)
 
-If you want to fine-tune the sweet-spot for your seating position, the quick win is the align hotkeys
-(`Ctrl+Alt+←/→/↑/↓`); to change the depth amount, edit `bscale` in `calib/baseline_scale.json`. See
-**[`CALIBRATION.md`](CALIBRATION.md)**.
+To fine-tune for your seating: change the depth via `bscale` in `calib/baseline_scale.json`, and the
+sweet-spot offset in `calib/eye_offset.json`. See **[`CALIBRATION.md`](CALIBRATION.md)**.
 
 ## Troubleshooting
 
