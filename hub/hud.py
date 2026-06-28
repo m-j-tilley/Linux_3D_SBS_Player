@@ -173,12 +173,12 @@ class HUD:
             f"{mode:<16}(C-A-3 toggle)",
             f"SRC   {str(st.get('src',''))[:28]}",
             f"CAP   {st.get('cap_fps',0):3.0f} fps    RENDER {st.get('render_fps',0):3.0f} fps",
-            f"L/R   swap:{'ON ' if st.get('swap') else 'OFF'}   vflip:{'ON ' if st.get('vflip') else 'OFF'}",
+            f"L/R   swap:{'ON ' if st.get('swap') else 'OFF'}",
             f"TRACK {'OK  ' if st.get('track_ok') else 'LOST'}     eye {st.get('ex',0):+.1f},{st.get('ey',0):+.1f},{st.get('ez',0):+.1f}",
-            f"LEAD  {st.get('lead_ms',20.0):3.0f} ms    {'(auto)' if st.get('lead_auto', False) else '(C-A- ./, tune)'}",
+            f"LEAD  {st.get('lead_ms',20.0):3.0f} ms    (auto)",
             f"SWEET {self._sweet(st.get('ex',0.0))}",
             "",
-            "C-A: 3 F V H S Q  arrows align    player: SPACE pause  </> seek  N/P video    click: PREV PLAY NEXT  empty=hide",
+            "C-A: 3 F H Q    player: SPACE pause  </> seek  N/P video    click: PREV PLAY NEXT  empty=hide",
         ]
         ncols = max(len(l) for l in lines)
         pw = ncols * self.GW + self.PAD * 2; ph = len(lines) * self.GH + self.PAD * 2

@@ -394,18 +394,9 @@ def main():
     try:
         from hotkeys import Hotkey
         hk = Hotkey({
-            "ctrl+alt+3": lambda: (toggle(), poke_hud()),
-            "ctrl+alt+f": lambda: (flip_lr(), poke_hud()),
-            "ctrl+alt+v": lambda: (flip_v(), poke_hud()),
-            "ctrl+alt+h": toggle_hud,
-            "ctrl+alt+s": toggle_rate,
-            "ctrl+alt+.": lambda: (lead_up(), poke_hud()),          # more eye-prediction lead (less motion lag)
-            "ctrl+alt+,": lambda: (lead_down(), poke_hud()),        # less lead
-            "ctrl+alt+left":  lambda: (eoff_nudge(-EOFF_NUDGE, 0.0), poke_hud()),   # nudge sweet-spot X (live align)
-            "ctrl+alt+right": lambda: (eoff_nudge(+EOFF_NUDGE, 0.0), poke_hud()),
-            "ctrl+alt+up":    lambda: (eoff_nudge(0.0, -EOFF_NUDGE), poke_hud()),   # nudge sweet-spot Y
-            "ctrl+alt+down":  lambda: (eoff_nudge(0.0, +EOFF_NUDGE), poke_hud()),
-            "ctrl+alt+0":     lambda: (recenter(), poke_hud()),     # reset eye-offset to 0
+            "ctrl+alt+3": lambda: (toggle(), poke_hud()),          # 3D on/off
+            "ctrl+alt+f": lambda: (flip_lr(), poke_hud()),          # swap L/R (parallel vs cross-eyed source)
+            "ctrl+alt+h": toggle_hud,                               # show/hide HUD
             "ctrl+alt+q": quit_app,
         }, display_name=os.environ.get("DISPLAY"), backend="record")
         if getattr(hk, "failed", None):
@@ -460,7 +451,7 @@ def main():
                 cap.seek_frac((hx - bx) / max(bw, 1.0)); show_hud(); return   # seek; keep controls up
         hide_hud()                                                        # click empty space -> dismiss the HUD
     glfw.set_mouse_button_callback(win, on_mouse)
-    print("[screen] running. Global Ctrl+Alt: 3=3D F=swap V=vflip H=hud S=60/120Hz arrows=align 0=recenter ./,=lead Q=quit.", flush=True)
+    print("[screen] running. Global Ctrl+Alt: 3=3D  F=swap  H=hud  Q=quit.", flush=True)
     print("[screen] player (focus the window): SPACE play/pause | <>=seek10s | ^v=60s | N/P prev/next video | H hud | "
           "click summons HUD then PREV/PLAY/NEXT + bar=seek, click empty=hide.", flush=True)
 
