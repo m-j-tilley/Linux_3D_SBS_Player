@@ -4,9 +4,13 @@
 #   ./play_sbs.sh /path/to/sbs_4k.mp4          (a side-by-side 3D video file, or an http(s):// URL)
 #   GPU_CAPTURE_MPV_FLIPY=0 ./play_sbs.sh <f>  # if the picture is upside down
 #   SBS_W=1920 SBS_H=1080 ./play_sbs.sh <f>    # smaller render target
-# Hotkeys (global): Ctrl+Alt+3 toggle 3D · Ctrl+Alt+V vertical flip · Ctrl+Alt+F swap L/R · Ctrl+Alt+arrows align · Ctrl+Alt+Q quit.
+# Hotkeys (global): Ctrl+Alt+3 toggle 3D · Ctrl+Alt+F swap L/R · Ctrl+Alt+H hud · Ctrl+Alt+Q quit.
 set -u
 cd "$(dirname "$0")"
+# Auto-detect the Odyssey panel = the connected 4K (3840x2160) output, so it survives cable/port swaps; override via SBS3D_PANEL_OUTPUT.
+: "${SBS3D_PANEL_OUTPUT:=$(xrandr 2>/dev/null | awk '/ connected/{o=$1} /^[[:space:]]+3840x2160/{print o; exit}')}"
+: "${SBS3D_PANEL_OUTPUT:=DP-0}"
+export SBS3D_PANEL_OUTPUT
 SRC="${1:-${SBS3D_VIDEO:-}}"
 [ -n "$SRC" ] || { echo "usage: ./play_sbs.sh <side-by-side-3d-video.mp4 | http(s)://url>" >&2; exit 2; }
 ORIG_SRC="$SRC"                               # the real file (before any VP9->cache swap) -> drives the folder playlist (next/prev)
@@ -87,5 +91,5 @@ exec $WEAVE_RUN env DISPLAY="${DISPLAY:-:1}" XAUTHORITY="${XAUTHORITY:-$(_xauth)
   GPU_CAPTURE_MPV="$SRC" SBS3D_PLAYLIST_DIR="$(dirname "$ORIG_SRC")" SBS3D_PLAYLIST_CUR="$ORIG_SRC" $SIZE_ENV \
   GPU_CAPTURE_MPV_FLIPY=${GPU_CAPTURE_MPV_FLIPY:-1} GPU_CAPTURE_MPV_FLIP=${GPU_CAPTURE_MPV_FLIP:-1} \
   GPU_CAPTURE_MPV_HWDEC=${GPU_CAPTURE_MPV_HWDEC:-auto} \
-  __GL_SYNC_TO_VBLANK=1 __GL_SYNC_DISPLAY_DEVICE="${PANEL_SYNC:-${SBS3D_PANEL_OUTPUT:-DP-2}}" __GL_YIELD=USLEEP \
+  __GL_SYNC_TO_VBLANK=1 __GL_SYNC_DISPLAY_DEVICE="${PANEL_SYNC:-${SBS3D_PANEL_OUTPUT}}" __GL_YIELD=USLEEP \
   "$PY" -u screen_weave.py

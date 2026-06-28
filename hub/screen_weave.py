@@ -28,7 +28,21 @@ W, H = 3840, 2160
 CALIB = os.path.join(HERE, "..", "calib")
 
 # panel-mode: 4K@120 is the DEFAULT (--no-hi120 forces 60); exit restores the LAUNCH rate, not a blind 60. DISPLAY/XAUTHORITY from env.
-PANEL_OUTPUT = os.environ.get("SBS3D_PANEL_OUTPUT", "DP-2")   # panel's xrandr output name; override via env
+def _detect_panel_output():
+    """The Odyssey panel's CURRENT xrandr output: the connected output offering a 3840x2160 mode (the G90XF is
+       the only 4K display in a typical setup). Auto-detected so it survives cable/port swaps; override via env."""
+    try:
+        out = subprocess.run(["xrandr", "--query"], capture_output=True, text=True, timeout=8).stdout
+        cur = None
+        for ln in out.splitlines():
+            if ln and not ln[0].isspace():
+                cur = ln.split()[0] if " connected" in ln else None
+            elif cur and ln.lstrip().startswith("3840x2160 "):
+                return cur
+    except Exception:
+        pass
+    return "DP-0"
+PANEL_OUTPUT = os.environ.get("SBS3D_PANEL_OUTPUT") or _detect_panel_output()   # auto-detect; override via env
 MODE_120 = ("3840x2160", "119.88")   # an xrandr-listed mode for DP-2 (recon: 60 / 119.88 / 164.98)
 MODE_60 = ("3840x2160", "60.00")
 
