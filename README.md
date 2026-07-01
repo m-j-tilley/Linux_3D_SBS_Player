@@ -14,7 +14,7 @@ software for this display, this fills that gap for people who own one.
 
 ## What you need
 
-- A **Samsung Odyssey 3D (G90XF)** connected over **DisplayPort/HDMI 2.1**, with its **USB cable**
+- A **Samsung Odyssey 3D (G90XF)** connected over **DisplayPort ONLY**, with its **USB cable**
   plugged in (the player needs the built-in **webcam** for eye-tracking and the **lens serial board**).
 - **Ubuntu** (22.04+ recommended) on an **X11 / Xorg** login session — **not Wayland**.
 - An **NVIDIA GPU** with the **proprietary driver** installed (`nvidia-smi` works). The fast video path
